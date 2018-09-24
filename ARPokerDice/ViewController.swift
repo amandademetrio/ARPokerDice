@@ -90,6 +90,16 @@ class ViewController: UIViewController {
   func initSceneView() {
     sceneView.delegate = self
     sceneView.showsStatistics = true
+    sceneView.debugOptions = [
+        //feature points
+        ARSCNDebugOptions.showFeaturePoints,
+        //world origin
+        ARSCNDebugOptions.showWorldOrigin,
+        //bounding boxes
+        SCNDebugOptions.showBoundingBoxes,
+        //wireframe
+        SCNDebugOptions.showWireframe
+    ]
   }
   
   func initScene() {
@@ -129,6 +139,7 @@ extension ViewController : ARSCNViewDelegate {
             //“The AR session is unable to track due to unforeseen reasons. There’s nothing much you can do in this condition but to hope that the state changes to something more manageable.”
             trackingStatus = "Tracking: Not available"
         case .normal:
+            //Everything working as expected
             trackingStatus = "Tracking: All good!"
         case .limited(let reason):
             switch reason {
